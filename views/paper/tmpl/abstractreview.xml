@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<metadata>
+	<layout title="CONFMGT_LAYOUT_ABSTRACT_REVIEW">
+	<message>
+		<![CDATA[CONFMGT_LAYOUT_SHOW_ABSTRACT_REVIEW_LAYOUT]]>
+	</message></layout>
+
+	<fields name="request">
+
+		<fieldset name="request" addfieldpath="/administrator/components/com_confmgt/models/fields">
+
+			<field name="cid"
+					type="modal_paper"
+					label="CONFMGT_JSEARCH_SELECT_PAPER"
+					required="false"
+					default=""
+					description="CONFMGT_JSEARCH_SELECT_PAPER"/>
+		</fieldset>
+	</fields>
+</metadata>

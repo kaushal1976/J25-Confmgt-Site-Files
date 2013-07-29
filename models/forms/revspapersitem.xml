@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+
+	<fieldset name="reviewersforpapersitem.form" addfieldpath="/administrator/components/com_confmgt/models/fields">
+
+		<field name="paper"
+				label="CONFMGT_FIELD_PAPER_ID"
+				alias="_paper_title"
+				filter="INT"
+				required="true"
+				class="validate[required]"
+				listKey="id"
+				labelKey="title"
+				type="ckcombo"
+				nullLabel="CONFMGT_JSEARCH_SELECT_PAPER_ID"/>
+
+		<field name="reviewer"
+				label="CONFMGT_FIELD_REVIEWER_NAME"
+				alias="_reviewer_surname"
+				filter="INT"
+				required="true"
+				class="validate[required]"
+				listKey="id"
+				labelKey="surname"
+				type="ckcombo"
+				nullLabel="CONFMGT_JSEARCH_SELECT_REVIEWER_NAME"/>
+	</fieldset>
+
+	<fieldset name="default.filters" addfieldpath="/administrator/components/com_confmgt/models/fields">
+
+		<field name="search_search"
+				listKey="id"
+				labelKey="title"
+				type="cksearch"
+				placeholder="CONFMGT_FILTER_NULL_PAPER_TITLE_USER_NAME_PAPER_KEY_WORDS_REVIEWER_TITLE_REVIEWER_FIRST_NAME_REVIEWER_SURNAME_REVIEWER_EMAIL_REVIEWER_AFFILIATION"
+				label="CONFMGT_JSEARCH_PAPER_TITLE_USER_NAME_PAPER_KEY_WORDS_REVIEWER_TITLE_REVIEWER_FIRST_NAME_REVIEWER_SURNAME_REVIEWER_EMAIL_REVIEWER_AFFILIATION"
+				class="element-search search-query"/>
+
+		<field name="sortTable"
+				type="cksort"
+				responsive="hidden-phone"
+				nullLabel="JGLOBAL_SORT_BY"
+				label="JGLOBAL_SORT_BY"
+				class="element-filter"/>
+
+		<field name="directionTable"
+				type="ckdirection"
+				responsive="hidden-phone"
+				nullLabel="JFIELD_ORDERING_DESC"
+				label="JFIELD_ORDERING_DESC"
+				class="element-filter"/>
+
+		<field name="limit"
+				type="cklimit"
+				submit="true"
+				label="JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC"
+				class="element-filter"/>
+	</fieldset>
+</form>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<metadata>
+	<layout title="CONFMGT_LAYOUT_REVIEW_OUTCOME_VIEW">
+	<message>
+		<![CDATA[CONFMGT_LAYOUT_SHOW_REVIEW_OUTCOME_VIEW_LAYOUT]]>
+	</message></layout>
+
+	<fields name="request">
+
+		<fieldset name="request" addfieldpath="/administrator/components/com_confmgt/models/fields">
+
+			<field name="cid"
+					type="modal_reviewoutcome"
+					label="CONFMGT_JSEARCH_SELECT_REVIEW_OUTCOME"
+					required="false"
+					default=""
+					description="CONFMGT_JSEARCH_SELECT_REVIEW_OUTCOME"/>
+		</fieldset>
+	</fields>
+</metadata>
