@@ -6,7 +6,7 @@
 * --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		0.3.1.2
 * @package		Confmgt
-* @subpackage	
+* @subpackage	Authors
 * @copyright	Copyright 2013, All rights reserved
 * @author		Dr Kaushal Keraminiyage - www.confmgt.com - admin@confmgt.com
 * @license		GNU/GPL
@@ -26,55 +26,44 @@
 defined('_JEXEC') or die('Restricted access');
 
 
+ConfmgtHelper::headerDeclarations();//Load the formvalidator scripts requirements.
+JDom::_('html.toolbar');
+?>
+<script language="javascript" type="text/javascript">
+	//Secure the user navigation on the page, in order preserve datas.
+	var holdForm = true;
+	window.onbeforeunload = function closeIt(){	if (holdForm) return false;};
+</script>
 
-/**
-* Confmgt Controller.
-*
-* @package	Confmgt
-* @subpackage	Controller.
-*/
-class ConfmgtCkController extends ConfmgtClassController
-{
-	/**
-	* The default view.
-	*
-	* @var string
-	*/
-	protected $default_view = 'cpanel';
+<h2><?php echo $this->title;?></h2>
+<form action="<?php echo(JRoute::_("index.php")); ?>" method="post" name="adminForm" id="adminForm" class='form-validate'>
+	<div>
+		<div>
 
-	/**
-	* Method to display a view.
-	*
-	* @access	public
-	* @param	boolean	$cachable	If true, the view output will be cached.
-	* @param	array	$urlparams	An array of safe url parameters and their variable types, for valid values see {@link JFilterInput::clean()}..
-	* @return	void
-	*
-	* @since	Cook 1.0
-	*/
-	public function display($cachable = false, $urlparams = false)
-	{
+			<!-- BRICK : form_1 -->
+			<?php echo $this->loadTemplate('form_1'); ?>
+		</div>
+		<div>
+
+			<!-- BRICK : toolbar_sing -->
+			<?php echo JDom::_('html.toolbar', array(
+				"bar" => JToolBar::getInstance('toolbar')
+			));?>
+		</div>
+		<div>
+
+			<!-- BRICK : form_2 -->
+			<?php echo $this->loadTemplate('form_2'); ?>
+		</div>
+	</div>
+
+
+	<?php 
 		$jinput = JFactory::getApplication()->input;
-
-		$this->_parentDisplay();
-
-		//If page is called through POST, reconstruct the url
-		if ($jinput->getMethod(null, null) == 'POST')
-		{
-			//Kill the post and rebuild the url
-			$this->setRedirect(ConfmgtHelper::urlRequest());
-			return;
-		}
-
-		return $this;
-	}
-
-
-}
-
-// Search for a fork to be able to override this class
-JLoader::register('ConfmgtController', JPATH_SITE_CONFMGT .DS. 'fork' .DS. 'controller.php');
-JLoader::load('ConfmgtController');
-// Fallback if no fork has been found
-if (!class_exists('ConfmgtController')){ class ConfmgtController extends ConfmgtCkController{} }
-
+		echo JDom::_('html.form.footer', array(
+		'dataObject' => $this->item,
+		'values' => array(
+					'id' => $this->state->get('authorsitem.id')
+				)));
+	?>
+</form>

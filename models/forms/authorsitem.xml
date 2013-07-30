@@ -61,6 +61,12 @@
 				class="validate[required]"
 				type="cktext"/>
 
+		<field name="country"
+				label="CONFMGT_FIELD_COUNTRY"
+				alias="country"
+				filter="STRING"
+				type="cktext"/>
+
 		<field name="attending_the_conference"
 				label="CONFMGT_FIELD_ATTENDING"
 				alias="attending_the_conference"
@@ -71,6 +77,90 @@
 			<option value="0">CONFMGT_FIELDS_BOOL_NO</option>
 			<option value="1">CONFMGT_FIELDS_BOOL_YES</option>
 		</field>
+	</fieldset>
+
+	<fieldset name="authorlogin.form_1"
+			addfieldpath="/administrator/components/com_confmgt/models/fields"
+			label="CONFMGT_JFORM_LOGIN">
+
+		<field name="user"
+				label="CONFMGT_FIELD_USER_USERNAME"
+				alias="_user_username"
+				filter="INT"
+				listKey="id"
+				labelKey="username"
+				type="ckcombo"
+				nullLabel="CONFMGT_JSEARCH_SELECT_USER_USERNAME"/>
+	</fieldset>
+
+	<fieldset name="authorlogin.form_2"
+			addfieldpath="/administrator/components/com_confmgt/models/fields"
+			label="CONFMGT_JFORM_NEW_ACCOUNT">
+
+		<field name="title"
+				label="CONFMGT_FIELD_TITLE"
+				alias="title"
+				filter="STRING"
+				required="true"
+				class="validate[required]"
+				msg-incorrect="CONFMGT_VALIDATOR_PLEASE_CHECK_THE_VALUE_OF_THE_TITLE_FIELD"
+				listKey="value"
+				labelKey="text"
+				type="ckcombo"
+				nullLabel="CONFMGT_JSEARCH_SELECT_TITLE"/>
+
+		<field name="first_name"
+				label="CONFMGT_FIELD_FIRST_NAME"
+				alias="first_name"
+				filter="STRING"
+				required="true"
+				class="validate[required]"
+				msg-incorrect="CONFMGT_VALIDATOR_PLEASE_CHECK_THE_VALUE_OF_THE_FIRST_NAME_FIELD"
+				type="cktext"/>
+
+		<field name="surname"
+				label="CONFMGT_FIELD_SURNAME"
+				alias="surname"
+				filter="STRING"
+				required="true"
+				class="validate[required]"
+				msg-incorrect="CONFMGT_VALIDATOR_PLEASE_CHECK_THE_VALUE_OF_THE_SURNAME_FIELD"
+				type="cktext"/>
+
+		<field name="email"
+				label="CONFMGT_FIELD_EMAIL"
+				alias="email"
+				filter="STRING"
+				required="true"
+				class="validate[required,custom[email]]"
+				validate="email"
+				msg-incorrect="CONFMGT_VALIDATOR_PLEASE_ENTER_A_VALID_EMAIL_ADDRESS"
+				type="cktext"/>
+
+		<field name="affiliation"
+				label="CONFMGT_FIELD_AFFILIATION"
+				alias="affiliation"
+				filter="STRING"
+				required="true"
+				class="validate[required]"
+				type="cktext"/>
+
+		<field name="attending_the_conference"
+				label="CONFMGT_FIELD_ATTENDING_THE_CONFERENCE"
+				alias="attending_the_conference"
+				filter="BOOL"
+				required="true"
+				class="validate[required]"
+				type="ckradio">
+			<option value="0">CONFMGT_FIELDS_BOOL_NO</option>
+			<option value="1">CONFMGT_FIELDS_BOOL_YES</option>
+		</field>
+
+		<field name="country"
+				label="CONFMGT_FIELD_COUNTRY"
+				alias="country"
+				filter="STRING"
+				type="cktext"/>
 	</fieldset>
 
 	<fieldset name="default.filters" addfieldpath="/administrator/components/com_confmgt/models/fields">

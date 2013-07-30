@@ -8,7 +8,7 @@
 			label="CONFMGT_JFORM_ADD_EDIT_AUTHOR_FOR_PAPER">
 
 		<field name="author_id"
-				label="CONFMGT_FIELD_AUTHOR_ID_ID"
+				label="CONFMGT_FIELD_AUTHOR_ID"
 				alias="author_id"
 				filter="INT"
 				required="true"
@@ -16,7 +16,7 @@
 				type="cktext"/>
 
 		<field name="paper_id"
-				label="CONFMGT_FIELD_PAPER_ID_ID"
+				label="CONFMGT_FIELD_PAPER_ID"
 				alias="paper_id"
 				filter="INT"
 				required="true"

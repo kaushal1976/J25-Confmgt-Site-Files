@@ -141,6 +141,7 @@ class ConfmgtCkModelAuthorsitem extends ConfmgtClassModelItem
 				$data->surname = null;
 				$data->email = null;
 				$data->affiliation = null;
+				$data->country = null;
 				$data->attending_the_conference = null;
 				$data->user = $jinput->get('filter_user', $this->getState('filter.user'), 'INT');
 				$data->paid_and_registered = null;
@@ -210,6 +211,7 @@ class ConfmgtCkModelAuthorsitem extends ConfmgtClassModelItem
 				$this->addSelect(	'a.added_by,'
 								.	'a.affiliation,'
 								.	'a.attending_the_conference,'
+								.	'a.country,'
 								.	'a.email,'
 								.	'a.first_name,'
 								.	'a.surname,'
@@ -222,10 +224,31 @@ class ConfmgtCkModelAuthorsitem extends ConfmgtClassModelItem
 				//BASE FIELDS
 				$this->addSelect(	'a.added_by,'
 								.	'a.attending_the_conference,'
+								.	'a.country,'
 								.	'a.creation_date,'
 								.	'a.email,'
 								.	'a.first_name,'
 								.	'a.paid_and_registered,'
+								.	'a.surname,'
+								.	'a.title,'
+								.	'a.user');
+
+				//SELECT
+				$this->addSelect('_user_.username AS `_user_username`');
+
+				//JOIN
+				$this->addJoin('`#__users` AS _user_ ON _user_.id = a.user', 'LEFT');
+
+				break;
+
+			case 'authorsitem.authorlogin':
+
+				//BASE FIELDS
+				$this->addSelect(	'a.affiliation,'
+								.	'a.attending_the_conference,'
+								.	'a.country,'
+								.	'a.email,'
+								.	'a.first_name,'
 								.	'a.surname,'
 								.	'a.title,'
 								.	'a.user');

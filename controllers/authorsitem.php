@@ -137,6 +137,15 @@ class ConfmgtCkControllerAuthorsitem extends ConfmgtClassControllerItem
 				));
 				break;
 
+			case 'authorlogin.cancel':
+				$this->applyRedirection($result, array(
+					'stay',
+					'com_confmgt.authors.authorsorder'
+				), array(
+					'cid[]' => null
+				));
+				break;
+
 			default:
 				$this->applyRedirection($result, array(
 					'stay',
@@ -264,6 +273,15 @@ class ConfmgtCkControllerAuthorsitem extends ConfmgtClassControllerItem
 		switch($this->getLayout() .'.'. $this->getTask())
 		{
 			case 'author.save':
+				$this->applyRedirection($result, array(
+					'stay',
+					'com_confmgt.authors.authorsorder'
+				), array(
+					'cid[]' => null
+				));
+				break;
+
+			case 'authorlogin.save':
 				$this->applyRedirection($result, array(
 					'stay',
 					'com_confmgt.authors.authorsorder'

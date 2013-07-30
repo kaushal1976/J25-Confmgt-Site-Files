@@ -51,7 +51,7 @@ function ConfmgtBuildRoute(&$query){
 
 	if(isset($query['id']))
 	{
-		if(in_array($view, array('author','authorsitemview','paper','abstractview','fullpaperreview','abstractreview','reviewer','reviewerview','review','reviewview','reviewersforpapersitem','camerareadyitemview','camerareadyitem','presentationitemview','presentationitem','fullpaper','fullpaperview','revoutcome','revoutcomeview','authorforpaper','authorsforpaperview')))
+		if(in_array($view, array('author','authorsitemview','authorlogin','paper','abstractview','fullpaperreview','abstractreview','reviewer','reviewerview','review','reviewview','reviewersforpapersitem','camerareadyitemview','camerareadyitem','presentationitemview','presentationitem','fullpaper','fullpaperview','revoutcome','revoutcomeview','authorforpaper','authorsforpaperview')))
 		{
 			$segments[] = (is_array($query['id'])?implode(',', $query['id']):$query['id']);
 			unset( $query['id'] );
@@ -85,7 +85,7 @@ function ConfmgtParseRoute($segments)
 	}
 
 	//Item layout : get the cid value
-	if(in_array($vars['view'], array('author','authorsitemview','paper','abstractview','fullpaperreview','abstractreview','reviewer','reviewerview','review','reviewview','reviewersforpapersitem','camerareadyitemview','camerareadyitem','presentationitemview','presentationitem','fullpaper','fullpaperview','revoutcome','revoutcomeview','authorforpaper','authorsforpaperview')) && isset($segments[$nextPos]))
+	if(in_array($vars['view'], array('author','authorsitemview','authorlogin','paper','abstractview','fullpaperreview','abstractreview','reviewer','reviewerview','review','reviewview','reviewersforpapersitem','camerareadyitemview','camerareadyitem','presentationitemview','presentationitem','fullpaper','fullpaperview','revoutcome','revoutcomeview','authorforpaper','authorsforpaperview')) && isset($segments[$nextPos]))
 	{
 		$slug = $segments[$nextPos];
 		$id = explode( ':', $slug );

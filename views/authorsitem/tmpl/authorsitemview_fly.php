@@ -96,6 +96,21 @@ defined('_JEXEC') or die('Restricted access');
     </div>
 	<div class="control-group">
     	<div class="control-label">
+			<label for="country">
+				<?php echo JText::_( "CONFMGT_FIELD_COUNTRY" ); ?> :
+			</label>
+		</div>
+		
+        <div class="controls">
+			<?php echo JDom::_('html.fly', array(
+											'dataKey' => 'country',
+											'dataObject' => $this->item
+											));
+			?>
+		</div>
+    </div>
+	<div class="control-group">
+    	<div class="control-label">
 			<label for="_user_username">
 				<?php echo JText::_( "CONFMGT_FIELD_USERNAME" ); ?> :
 			</label>
@@ -134,21 +149,6 @@ defined('_JEXEC') or die('Restricted access');
         <div class="controls">
 			<?php echo JDom::_('html.fly.bool', array(
 											'dataKey' => 'attending_the_conference',
-											'dataObject' => $this->item
-											));
-			?>
-		</div>
-    </div>
-	<div class="control-group">
-    	<div class="control-label">
-			<label for="_user_username">
-				<?php echo JText::_( "CONFMGT_FIELD_USERNAME" ); ?> :
-			</label>
-		</div>
-		
-        <div class="controls">
-			<?php echo JDom::_('html.fly', array(
-											'dataKey' => '_user_username',
 											'dataObject' => $this->item
 											));
 			?>

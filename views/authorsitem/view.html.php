@@ -48,7 +48,7 @@ class ConfmgtCkViewAuthorsitem extends ConfmgtClassView
 	public function display($tpl = null)
 	{
 		$layout = $this->getLayout();
-		if (in_array($layout, array('author', 'authorsitemview')))
+		if (in_array($layout, array('author', 'authorsitemview', 'authorlogin')))
 		{
 			$fct = "display" . ucfirst($layout);
 
@@ -111,6 +111,70 @@ class ConfmgtCkViewAuthorsitem extends ConfmgtClassView
 		// Cancel
 		CkJToolBarHelper::cancel('authorsitem.cancel', "CONFMGT_JTOOLBAR_CANCEL");
 		$lists['enum']['authors.title'] = ConfmgtHelper::enumList('authors', 'title');
+
+		//Title
+		$lists['select']['title'] = new stdClass();
+		$lists['select']['title']->list = $lists['enum']['authors.title'];
+		$lists['select']['title']->value = $item->title;
+	}
+
+	/**
+	* Execute and display a template : Author login
+	*
+	* @access	protected
+	* @param	string	$tpl	The name of the template file to parse; automatically searches through the template paths.
+	*
+	* @return	mixed	A string if successful, otherwise a JError object.
+	*
+	* @since	11.1
+	*/
+	protected function displayAuthorlogin($tpl = null)
+	{
+		$document	= JFactory::getDocument();
+		$this->title = JText::_("CONFMGT_LAYOUT_AUTHOR_LOGIN");
+		$document->title = $document->titlePrefix . $this->title . $document->titleSuffix;
+
+		// Initialiase variables.
+		$this->model	= $model	= $this->getModel();
+		$this->state	= $state	= $this->get('State');
+		$state->set('context', 'authorsitem.authorlogin');
+		$this->item		= $item		= $this->get('Item');
+		$this->form		= $form		= $this->get('Form');
+		$this->canDo	= $canDo	= ConfmgtHelper::getActions($model->getId());
+		$lists = array();
+		$this->lists = &$lists;
+
+		$user		= JFactory::getUser();
+		$isNew		= ($model->getId() == 0);
+
+		//Check ACL before opening the form (prevent from direct access)
+		if (!$model->canEdit($item, true))
+			$model->setError(JText::_('JERROR_ALERTNOAUTHOR'));
+
+		// Check for errors.
+		if (count($errors = $model->getErrors()))
+		{
+			JError::raiseError(500, implode(BR, array_unique($errors)));
+			return false;
+		}
+		$jinput = JFactory::getApplication()->input;
+
+		//Hide the component menu in item layout
+		$jinput->set('hidemainmenu', true);
+
+		//Toolbar initialization
+
+		JToolBarHelper::title(JText::_('CONFMGT_LAYOUT_AUTHOR_LOGIN'), 'confmgt_authors');
+		// Save & Close
+		if (($isNew && $model->canCreate()) || (!$isNew && $item->params->get('access-edit')))
+			CkJToolBarHelper::save('authorsitem.save', "CONFMGT_JTOOLBAR_SAVE_CLOSE");
+		// Cancel
+		CkJToolBarHelper::cancel('authorsitem.cancel', "CONFMGT_JTOOLBAR_CANCEL");
+		$lists['enum']['authors.title'] = ConfmgtHelper::enumList('authors', 'title');
+
+		$model_user = CkJModel::getInstance('ThirdUsers', 'ConfmgtModel');
+		$model_user->addGroupOrder("a.username");
+		$lists['fk']['user'] = $model_user->getItems();
 
 		//Title
 		$lists['select']['title'] = new stdClass();
