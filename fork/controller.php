@@ -57,11 +57,18 @@ class ConfmgtController extends ConfmgtCkController
 	{
 		//redirect the user if not logged in
 		
-		$user = JFactory::getUser();
-		if ($user->get('guest') == 1) {
+		$jinput = JFactory::getApplication()->input;
+		$layouttest = $jinput->get('layout', null, null);
+		
+		if (!$layouttest == 'authorlogin') {
+		
+			$user = JFactory::getUser();
+			$msg = JText::_('CONFMGT_AUTHLOGIN_MSG');
+			if ($user->get('guest') == 1) {
 				// Redirect to login page.
-			$this->setRedirect(JRoute::_('index.php?option=com_users&view=login', false));
+			$this->setRedirect(JRoute::_('index.php?option=com_confmgt&view=authorsitem&layout=authorlogin', $msg));
 			return;
+			}
 		}
 			
 		$jinput = JFactory::getApplication()->input;
