@@ -83,14 +83,22 @@
 			addfieldpath="/administrator/components/com_confmgt/models/fields"
 			label="CONFMGT_JFORM_LOGIN">
 
-		<field name="user"
-				label="CONFMGT_FIELD_USER_USERNAME"
-				alias="_user_username"
-				filter="INT"
-				listKey="id"
-				labelKey="username"
-				type="ckcombo"
-				nullLabel="CONFMGT_JSEARCH_SELECT_USER_USERNAME"/>
+	<field name="username" 
+			label="CONFMGT_FIELD_USERNAME"
+			type="cktext"
+			class="validate[required]"
+			alias="username"			
+			required="true"
+		/>
+
+		<field name="password" type="password"
+			autocomplete="off"
+			class="validate-password"
+			alias="password"
+			filter="raw"
+			label="JGLOBAL_PASSWORD"
+			required="true"
+		/>
 	</fieldset>
 
 	<fieldset name="authorlogin.form_2"

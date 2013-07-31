@@ -42,8 +42,8 @@ $fieldSets = $this->form->getFieldsets();
 	foreach($fieldSet as $field):
 
 		//Check ACL
-	    if ((method_exists($field, 'canView')) && !$field->canView())
-	    	continue;
+	    //if ((method_exists($field, 'canView')) && !$field->canView())
+	    //	continue;
 
 	    // If the field is hidden, only use the input.
 	    if ($field->hidden):
