@@ -28,6 +28,21 @@ defined('_JEXEC') or die('Restricted access');
 
 ConfmgtHelper::headerDeclarations();//Load the formvalidator scripts requirements.
 JDom::_('html.toolbar');
+
+$options = array(
+    'onActive' => 'function(title, description){
+        description.setStyle("display", "block");
+        title.addClass("open").removeClass("closed");
+    }',
+    'onBackground' => 'function(title, description){
+        description.setStyle("display", "none");
+        title.addClass("closed").removeClass("open");
+    }',
+    'startOffset' => 0,  // 0 starts on the first tab, 1 starts the second, etc...
+    'useCookie' => true, // this must not be a string. Don't use quotes.
+);
+ 
+
 ?>
 <script language="javascript" type="text/javascript">
 	//Secure the user navigation on the page, in order preserve datas.
@@ -36,6 +51,12 @@ JDom::_('html.toolbar');
 </script>
 
 <h2><?php echo $this->title;?></h2>
+
+<?php 
+
+echo JHtml::_('tabs.start', 'tab_group_id', $options);
+echo JHtml::_('tabs.panel', JText::_('CONFMGT_LAYOUT_AUTHOR_LOGIN'), 'panel_1_id');
+?>
 <form action="<?php echo(JRoute::_("index.php")); ?>" method="post" name="adminForm" id="adminForm" class='form-validate'>
 	<div>
 		<div>
@@ -50,6 +71,28 @@ JDom::_('html.toolbar');
 				"bar" => JToolBar::getInstance('toolbar')
 			));?>
 		</div>
+
+	</div>
+
+
+	<?php 
+		$jinput = JFactory::getApplication()->input;
+		echo JDom::_('html.form.footer', array(
+		'dataObject' => $this->item,
+		'values' => array(
+					'id' => $this->state->get('authorsitem.id')
+				)));
+	?>
+</form>
+<?php 
+echo JHtml::_('tabs.panel', JText::_('CONFMGT_JFORM_NEW_ACCOUNT'), 'panel_2_id');
+
+?>
+
+<form action="<?php echo(JRoute::_("index.php")); ?>" method="post" name="adminForm" id="adminForm" class='form-validate'>
+	<div>
+		<div>
+
 		<div>
 
 			<!-- BRICK : form_2 -->
@@ -67,3 +110,7 @@ JDom::_('html.toolbar');
 				)));
 	?>
 </form>
+<?php 
+echo JHtml::_('tabs.end');
+
+?>
